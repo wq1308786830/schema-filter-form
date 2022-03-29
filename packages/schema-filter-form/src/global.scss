@@ -1,0 +1,22 @@
+//.ant-form-inline {
+//  .ant-form-item {
+//    display: inline-grid;
+//    grid-template-columns: 0 5em auto 0;
+//  }
+//}
+
+.inline-btn {
+  height: inherit;
+  display: inline-flex;
+  align-items: center;
+  grid-column: unset;
+  justify-self: end;
+}
+
+.one-line-btn {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  grid-column: 1 / end;
+  justify-self: end;
+}

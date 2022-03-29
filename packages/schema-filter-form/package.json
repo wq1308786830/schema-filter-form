@@ -1,0 +1,33 @@
+{
+  "name": "schema-filter-form",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "Russell <russell.wang@ximalaya.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "typings": "lib/types.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wq1308786830/schema-filter-form.git"
+  },
+  "scripts": {
+    "start": "rm -rf lib/** && babel src -x '.tsx,.ts,.js,.jsx' -d lib --copy-files -w",
+    "build": "rm -rf lib/** && babel src -x '.tsx,.ts,.js,.jsx' -d lib --copy-files"
+  },
+  "dependencies": {
+    "antd": "^3.26.20",
+    "react": "^16.14.0"
+  }
+}
