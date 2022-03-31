@@ -23,8 +23,8 @@ const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
     try {
       const list = await onSearch(value);
       let result = list;
-      if ((search.label && search.label !== 'label') || (search.value && search.value !== 'value')) {
-        result = list.map((l) => ({ label: l[search.label], value: l[search.value] }));
+      if ((search?.label && search.label !== 'label') || (search?.value && search.value !== 'value')) {
+        result = list.map((l: any) => ({ label: l[search.label], value: l[search.value] }));
       }
       setOptions((val) => ({ ...val, data: result, loading: false }));
     } catch (e) {
@@ -43,7 +43,7 @@ const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
         if (open) {
           setLock(false);
           setOptions({ loading: false, data: [] });
-          if (search.when === 'open') {
+          if (search?.when === 'open') {
             await fetchData();
           }
         } else {
@@ -53,7 +53,7 @@ const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
       onSearch={async (value) => {
         if (typeof onSearch !== 'function') return;
         // 搜索发起时机配置为open时代表onDropdownVisibleChange open=true时发起搜索请求
-        if (lock || search.when === 'open') return;
+        if (lock || search?.when === 'open') return;
 
         await fetchData(value);
       }}

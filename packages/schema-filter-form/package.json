@@ -1,5 +1,5 @@
 {
-  "name": "schema-filter-form",
+  "name": "@schema-forms/schema-filter-form",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wq1308786830/schema-filter-form.git"
+    "url": "https://github.com/wq1308786830/schema-forms/tree/main/packages/schema-filter-form"
   },
   "scripts": {
     "start": "rm -rf lib/** && babel src -x '.tsx,.ts,.js,.jsx' -d lib --copy-files -w",
@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "antd": "^3.26.20",
-    "react": "^16.14.0"
+    "autoprefixer": "^8.6.5",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   }
 }

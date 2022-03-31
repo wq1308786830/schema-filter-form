@@ -1,5 +1,5 @@
 {
-  "name": "schema-filter-form",
+  "name": "schema-forms",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -20,15 +20,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wq1308786830/schema-filter-form.git"
+    "url": "https://github.com/wq1308786830/schema-forms.git"
   },
   "scripts": {
     "start": "rm -rf lib/** && babel packages/schema-filter-form/src -x '.tsx,.ts,.js,.jsx' -d lib --copy-files -w",
     "build": "rm -rf lib/** && babel packages/schema-filter-form/src -x '.tsx,.ts,.js,.jsx' -d lib --copy-files"
-  },
-  "dependencies": {
-    "antd": "^3.26.20",
-    "react": "^16.14.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",

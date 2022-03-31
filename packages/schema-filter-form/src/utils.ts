@@ -1,12 +1,14 @@
+import {ConvertedFormItemProps, FormItemProps} from "./types";
+
 /**
  * antd3 Default value of getValueFromEvent
  * @param e
  */
-export function defaultGetValueFromEvent(e) {
+export function defaultGetValueFromEvent(e: any) {
   if (!e || !e.target) {
     return e;
   }
-  const { target } = e;
+  const {target} = e;
   return target.type === 'checkbox' ? target.checked : target.value;
 }
 
@@ -16,9 +18,9 @@ export function defaultGetValueFromEvent(e) {
  * https://procomponents.ant.design/components/schema-form
  * @param itemSchema
  */
-export function convertItemSchemaToV3(itemSchema) {
+export function convertItemSchemaToV3(itemSchema: FormItemProps): ConvertedFormItemProps {
   const { key, dataIndex, title, formItemProps } = itemSchema;
-  const curFormItemProps = { ...formItemProps };
+  const curFormItemProps = { ...formItemProps, key, label: title };
   const {
     style,
     initialValue,
@@ -41,6 +43,17 @@ export function convertItemSchemaToV3(itemSchema) {
     getValueFromEvent,
     normalize,
   };
+
+  let convertedDataIndex: string;
+  if (typeof dataIndex === "number" || typeof dataIndex === "string") {
+    convertedDataIndex = `${dataIndex}`;
+  } else if (Array.isArray(dataIndex)) {
+    convertedDataIndex = dataIndex.join('.');
+  } else {
+    convertedDataIndex = '';
+    console.error('dataIndex 配置类型有误');
+  }
+
   delete curFormItemProps?.initialValue;
   delete curFormItemProps?.rules;
   delete curFormItemProps?.trigger;
@@ -51,5 +64,5 @@ export function convertItemSchemaToV3(itemSchema) {
   delete curFormItemProps?.normalize;
   delete curFormItemProps?.style;
 
-  return { key, title, dataIndex, curFormItemProps, options, style };
+  return { dataIndex: convertedDataIndex, curFormItemProps, options, style };
 }
