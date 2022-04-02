@@ -1,4 +1,4 @@
-# `schema-filter-form`
+# `@schema-forms/filter-form`
 
 > 本组件用来提供基于antd@3的schema配置化表单搜索组件，完全兼容antd@3的组件属性
 
