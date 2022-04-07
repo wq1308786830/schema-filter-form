@@ -1,4 +1,56 @@
-import {ConvertedFormItemProps, FormItemProps} from "./types";
+import { ConvertedFormItemProps, FormItemProps } from './types';
+
+/**
+ * 防抖
+ * @param func
+ * @param delay
+ * @param immediate
+ */
+export function debounce(func: { (value?: string | number): Promise<void>; apply?: any; }, delay: number | undefined, immediate = false) {
+  let timer: any = undefined;
+  return (...args: any) => {
+    clearTimeout(timer);
+    if (immediate) {
+      const callImmediate = !timer;
+      if (callImmediate) {
+        func.apply(this, args);
+      } else {
+        timer = setTimeout(() => {
+          func.apply(this, args);
+          timer = undefined;
+        }, delay);
+      }
+    } else {
+      timer = setTimeout(() => func.apply(this, args), delay);
+    }
+  };
+}
+
+/**
+ * 节流
+ * @param func
+ * @param delay
+ */
+export function throttle(func: { (value?: string | number): Promise<void>; apply?: any; }, delay: number) {
+  let executed = false;
+  let timer: any = undefined;
+  let oldTime = Date.now();
+
+  return (...args: any) => {
+    clearTimeout(timer);
+
+    if (!executed) {
+      oldTime = Date.now();
+      executed = true;
+    }
+    const remain = delay - (Date.now() - oldTime);
+    if (remain <= 0) {
+      oldTime = Date.now();
+    } else {
+      timer = setTimeout(() => func.apply(this, args), remain);
+    }
+  };
+}
 
 /**
  * antd3 Default value of getValueFromEvent
@@ -8,7 +60,7 @@ export function defaultGetValueFromEvent(e: any) {
   if (!e || !e.target) {
     return e;
   }
-  const {target} = e;
+  const { target } = e;
   return target.type === 'checkbox' ? target.checked : target.value;
 }
 
@@ -45,7 +97,7 @@ export function convertItemSchemaToV3(itemSchema: FormItemProps): ConvertedFormI
   };
 
   let convertedDataIndex: string;
-  if (typeof dataIndex === "number" || typeof dataIndex === "string") {
+  if (typeof dataIndex === 'number' || typeof dataIndex === 'string') {
     convertedDataIndex = `${dataIndex}`;
   } else if (Array.isArray(dataIndex)) {
     convertedDataIndex = dataIndex.join('.');

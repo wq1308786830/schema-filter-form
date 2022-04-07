@@ -1,7 +1,7 @@
 {
   "name": "@schema-forms/filter-form",
-  "version": "1.0.1",
-  "description": "schema antd3 form filter",
+  "version": "1.0.3",
+  "description": "schema antd3 form filter ProComponents",
   "author": "Russell",
   "homepage": "https://github.com/wq1308786830/schema-forms/tree/main/packages/schema-filter-form",
   "license": "ISC",
@@ -13,7 +13,7 @@
   "files": [
     "dist"
   ],
-  "typings": "dist/types.d.ts",
+  "typings": "dist/index.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -22,8 +22,12 @@
     "url": "https://github.com/wq1308786830/schema-forms/tree/main/packages/schema-filter-form"
   },
   "scripts": {
-    "start": "rm -rf dist/** && babel src -x '.tsx,.ts,.js,.jsx' -d dist --copy-files -w",
-    "build": "rm -rf dist/** && babel src -x '.tsx,.ts,.js,.jsx' -d dist --copy-files"
+    "rm": "rm -rf dist/**",
+    "compiling": "babel src -x '.tsx,.ts,.js,.jsx' -d dist --copy-files -w",
+    "compile": "babel src -x '.tsx,.ts,.js,.jsx' -d dist --copy-files",
+    "types": "tsc",
+    "start": "npm run rm && npm run types && npm run compiling",
+    "build": "npm run rm && npm run types && npm run compile"
   },
   "dependencies": {
     "antd": "^3.26.18",

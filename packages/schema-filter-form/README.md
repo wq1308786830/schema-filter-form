@@ -1,11 +1,34 @@
 # `@schema-forms/filter-form`
 
-> 本组件用来提供基于antd@3的schema配置化表单搜索组件，完全兼容antd@3的组件属性
+> 本组件用来提供基于antd@3的schema配置化表单搜索组件参考procomponents的属性参数，完全兼容antd@3的组件属性以及其本身支持的所有属性
 
 ## Usage
+| 参数            | 说明         | 类型                                                | 默认值     |     |
+|---------------|------------|---------------------------------------------------|---------|-----|
+| dataIndex     | 字段id       | string                                            |         |     |
+| title         | 字段名        | string                                            |         |     |
+| valueType     | 组件类型       | 'input','select','radio','checkbox','dadtepicker' | 'input' |     |
+| formItemProps | 表单项属性      |                                                   |         |     |
+| fieldProps    | 表单项的输入组件属性 |                                                   |         |     |
+
+- formItemProps，兼容透传antd@v3的Form.Item以及getFieldDecorator(id, options)的所有属性及其本身支持的所有属性，其中getFieldDecorator(id, options)的id于options重的所有属性都集合在formItemProps同一层级中，另外有额外参数如下：
+
+| 参数        | 说明                                | 类型               | 默认值 |     |
+|-----------|-----------------------------------|------------------|-----|-----|
+| valueEnum | 'select','radio','checkbox'所用的可选项 | 参考antd@v3 Select |     |     |
+
+- fieldProps，兼容透传antd@v3输入组件的各种属性以及其本身支持的所有属性，另有如下：
+
+| 参数       | 说明                                                                            | 类型                                                       | 默认值 |     |
+|----------|-------------------------------------------------------------------------------|----------------------------------------------------------|-----|-----|
+| type     | 如DatePicker组件的子类型：month,week,date,range；                                      | `string`                                                 |     |     |
+| onSearch | 搜索函数                                                                          | `(params: any) => Promise<any>`                          |     |     |
+| search   | select组件搜索配置，when值input代表输入的时候搜索，when值为open代表下拉框打开时搜索，label与value配置其使用的接口返回字段 | `{ when: 'open'｜'input'; label: string; value: string }` |     |     |
+
+
 
 ```
-import SchemaFilterForm, { FormItemProps } from '@schema-forms/filter-form';
+import SchemaFilterForm from '@schema-forms/filter-form';
 const Index = () => {
     const formRef = useRef<{ form: WrappedFormUtils }>();   // antd3 form ref
 
@@ -16,7 +39,7 @@ const Index = () => {
       labelAlign: 'left' as 'left' | 'right',
     };
     // form schema
-    const schemas: FormItemProps[] = [
+    const schemas = [
       {
          title: '合同名称',
          dataIndex: 'name',

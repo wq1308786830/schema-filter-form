@@ -1,14 +1,16 @@
 import React from 'react';
 import { FormComponentProps } from 'antd/lib/form';
-import {Omit} from "antd/lib/_util/type";
-import {ConnectedComponentClass} from "antd/lib/form/interface";
+import { Omit } from 'antd/lib/_util/type';
+import { ConnectedComponentClass } from 'antd/lib/form/interface';
 
 // Input等输入组件需要的配置
 export interface FieldProps {
   placeholder?: string;
   allowClear?: boolean;
   style?: React.CSSProperties;
-  rest: any;
+  rest?: any;
+  onSearch?: (params: any) => Promise<any>;
+  search?: { when: 'open' | 'input'; label: string; value: string };
   [key: string]: any;
 }
 
@@ -29,15 +31,15 @@ export interface FormItemProps {
 export interface CurFormItemProps extends FormItemProps {}
 
 export interface FormItemOptions {
-    style?: React.CSSProperties,
-    initialValue?: string | number,
-    rules?: any[],
-    trigger?: string,
-    validateFirst?: boolean,
-    validateTrigger?: string|string[],
-    valuePropName?: string,
-    getValueFromEvent?: (e: any) => void,
-    normalize?: (value: any, prevValue: any, allValues: any) => any,
+  style?: React.CSSProperties;
+  initialValue?: string | number;
+  rules?: any[];
+  trigger?: string;
+  validateFirst?: boolean;
+  validateTrigger?: string | string[];
+  valuePropName?: string;
+  getValueFromEvent?: (e: any) => void;
+  normalize?: (value: any, prevValue: any, allValues: any) => any;
 }
 
 /**
@@ -60,9 +62,9 @@ export interface SubmitterProps {
   };
   resetButtonProps?: any;
   submitButtonProps?: any;
-  render?: (props: any, doms?: any) => React.ReactNode[];   // 由父组件完全自主定义提交按钮以及其事件
-  loading?: boolean;    // 提供submit提交函数的时候loading状态可以由父组件控制
-  submit?: (values: any) => Promise<any> | void;    // 查询请求函数
+  render?: (props: any, doms?: any) => React.ReactNode[]; // 由父组件完全自主定义提交按钮以及其事件
+  loading?: boolean; // 提供submit提交函数的时候loading状态可以由父组件控制
+  submit?: (values: any) => Promise<any> | void; // 查询请求函数
 }
 
 export interface SchemaFilterFormProps extends FormComponentProps {
@@ -70,7 +72,3 @@ export interface SchemaFilterFormProps extends FormComponentProps {
   submitter: SubmitterProps;
   formProps?: any;
 }
-
-declare const SchemaFilterForm: ConnectedComponentClass<React.ForwardRefExoticComponent<SchemaFilterFormProps & React.RefAttributes<FormComponentProps<any>>>, Omit<SchemaFilterFormProps, "form">>;
-export default SchemaFilterForm;
-

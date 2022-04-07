@@ -3,11 +3,11 @@ import { Button, Checkbox, Form, Input, Radio } from 'antd';
 import { ISelect, IDatePicker } from './components';
 import { convertItemSchemaToV3 } from './utils';
 import { compType } from './constants';
-import {FormItemProps, SchemaFilterFormProps} from './types';
+import { FormItemProps, SchemaFilterFormProps } from './types.d';
 
 const SchemaFilterForm: React.FC<SchemaFilterFormProps> = (props) => {
-  const {form, schema, submitter = {}, formProps = {}} = props;
-  const {getFieldDecorator} = form;
+  const { form, schema, submitter = {}, formProps = {} } = props;
+  const { getFieldDecorator } = form;
 
   const [iSchema, setISchema] = useState(schema);
   const [expanded, setExpanded] = useState(true);
@@ -33,16 +33,16 @@ const SchemaFilterForm: React.FC<SchemaFilterFormProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    setLoading(typeof submitter.loading === 'boolean' ? submitter.loading : false)
+    setLoading(typeof submitter.loading === 'boolean' ? submitter.loading : false);
   }, [submitter.loading]);
 
   /**
    * 配置输入组件
    * @param itemSchema
    */
-  const configComponent = (itemSchema: { valueType?: any; title?: any; valueEnum?: any; fieldProps?: any; }) => {
-    const {title, valueEnum, fieldProps} = itemSchema;
-    const {allowClear = true} = fieldProps || {};
+  const configComponent = (itemSchema: { valueType?: any; title?: any; valueEnum?: any; fieldProps?: any }) => {
+    const { title, valueEnum, fieldProps } = itemSchema;
+    const { allowClear = true } = fieldProps || {};
     const placeholder = `请输入${title || ''}`;
 
     switch (itemSchema.valueType) {

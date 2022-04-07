@@ -1,5 +1,6 @@
-import React, { ForwardedRef, forwardRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useMemo, useState } from 'react';
 import { Select } from 'antd';
+import { debounce } from '../utils';
 
 interface IProps {
   valueEnum?: { label: string; value: any }[];
@@ -32,6 +33,8 @@ const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
     }
   };
 
+  const debouncedFetch = useMemo(() => debounce(fetchData, 800), []);
+
   return (
     <Select
       ref={ref}
@@ -55,7 +58,7 @@ const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
         // 搜索发起时机配置为open时代表onDropdownVisibleChange open=true时发起搜索请求
         if (lock || search?.when === 'open') return;
 
-        await fetchData(value);
+        await debouncedFetch(value);
       }}
     >
       {options.data.map((v) => (
