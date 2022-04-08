@@ -1,0 +1,56 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["plugin:@typescript-eslint/recommended", "airbnb", "plugin:prettier/recommended"],
+  "globals": {},
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "legacyDecorators": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "ignorePatterns": ["scripts/**", "**/__tests__/**"],
+  "plugins": ["jsx-a11y", "react-hooks", "@typescript-eslint"],
+  "rules": {
+    "react/jsx-props-no-spreading": [0],
+    "react/forbid-prop-types": [0],
+    "react/jsx-one-expression-per-line": "off",
+    "react/prop-types":"off",
+    "no-unused-expressions":"off",
+    "no-underscore-dangle":"off",
+    "consistent-return":"off",
+    "class-methods-use-this":"off",
+    "no-param-reassign":"off",
+    "no-async-promise-executor":"off",
+    "react/jsx-wrap-multilines":"off",
+    "no-plusplus":"off",
+    "no-continue":"off",
+    "no-void":"off",
+    "no-useless-constructor":"off",
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", "tsx"] }],
+    "jsx-a11y/click-events-have-key-events":"off",
+    "jsx-a11y/no-static-element-interactions":"off",
+    "jsx-a11y/anchor-is-valid":"off",
+    "import/prefer-default-export":"off",
+    "func-names": "off",
+    "import/no-extraneous-dependencies": "off",
+    "camelcase": "off",
+    "react/destructuring-assignment": "off",
+    "import/extensions": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/jsx-curly-newline": "off"
+  }
+}

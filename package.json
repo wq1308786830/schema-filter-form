@@ -22,10 +22,7 @@
     "type": "git",
     "url": "https://github.com/wq1308786830/schema-forms.git"
   },
-  "scripts": {
-    "start": "rm -rf lib/** && babel packages/schema-filter-form/src -x '.tsx,.ts,.js,.jsx' -d lib --copy-files -w",
-    "build": "rm -rf lib/** && babel packages/schema-filter-form/src -x '.tsx,.ts,.js,.jsx' -d lib --copy-files"
-  },
+  "scripts": {},
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.8",
@@ -33,14 +30,18 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.18.0",
     "autoprefixer": "^8.6.5",
     "eslint": "^8.12.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "lerna": "^4.0.0",
+    "prettier": "^2.6.2",
     "typescript": "^4.6.3"
   }
 }
