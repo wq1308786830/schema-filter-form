@@ -5,7 +5,7 @@ import { debounce } from '../utils';
 interface IProps {
   valueEnum?: { label: string; value: any }[];
   onSearch?: any;
-  search?: { when: 'open' | 'input'; label: string; value: string };
+  search?: { when: 'open' | 'input'; label?: string; value?: string };
 }
 
 const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
@@ -24,9 +24,9 @@ const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
     try {
       const list = await onSearch(value);
       let result = list;
-      if ((search?.label && search.label !== 'label') || (search?.value && search.value !== 'value')) {
-        result = list.map((l: any) => ({ label: l[search.label], value: l[search.value] }));
-      }
+      const labelStr = search?.label ? search.label : 'label';
+      const valueStr = search?.value ? search.value : 'value';
+      result = list.map((l: any) => ({ label: l[labelStr], value: l[valueStr] }));
       setOptions((val) => ({ ...val, data: result, loading: false }));
     } catch (e) {
       setOptions({ loading: false, data: [] });
@@ -69,5 +69,13 @@ const ISelect = forwardRef((props: IProps, ref: ForwardedRef<any>) => {
     </Select>
   );
 });
+
+ISelect.defaultProps = {
+  valueEnum: [],
+  onSearch: () => void 0,
+  search: {
+    when: 'open',
+  },
+};
 
 export default ISelect;

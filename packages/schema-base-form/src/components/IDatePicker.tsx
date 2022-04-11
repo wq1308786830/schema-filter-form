@@ -21,4 +21,8 @@ const IDatePicker = forwardRef((props: { type?: string }, ref: ForwardedRef<any>
   }
 });
 
+IDatePicker.defaultProps = {
+  type: '',
+};
+
 export default IDatePicker;
